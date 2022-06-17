@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div class="content">
+            <div class="story">
+                <h1>Learn to code by watching others</h1>
+                <p>
+                    see how experienced developes solve problems in real-time.
+                    Watching scripted tutorials is great, but understanding how 
+                    developers think is invaluable.
+                </p>
+            </div>
+            <div class="form">
+                <p>Try it free 7 days <span id="top-p">then $20/mo. thereafter</span></p>
+                <form>
+                    <div class="form-control">
+                        <input type="text" placeholder="First Name" name="first_name" id="first_name" value="">
+                        <img src="./assets/icon-error.svg" alt="error-image" id="firstError">
+                        <h3 id="firstTextError">First Name cannot be empty</h3>
+                    </div>
+                    <div class="form-control">
+                        <input type="text" placeholder="Last Name" name="last_name" id="last_name" value="">
+                        <img src="./assets/icon-error.svg"  alt="error-image" id="lastError">
+                        <h3 id="lastTextError">Last Name cannot be empty</h3>
+                    </div>
+                    <div class="form-control">
+                        <input type="email" placeholder="Email Address" name="email" id="email" value="">
+                        <img src="./assets/icon-error.svg"  alt="error-image" id="emailError">
+                        <h3 id="emailTextError">Looks like this is not an email</h3>
+                    </div>
+                    <div class="form-control">
+                        <input type="password" placeholder="Password" name="password" id="password" value="">
+                        <img src="./assets/icon-error.svg"  alt="error-image" id="passError">
+                        <h3 id="passTextError">Password cannot be empty</h3>
+                    </div>
+                    <button id="submit-btn">claim your free trial</button>
+                    <h5>By clicking the button, you re agreeing to our <b>Terms and Services.</b></h5>
+                </form>
+
+            </div>
+        </div>
+    </main>
+    <script>
+        // variables
+        const firstErr = document.getElementById("firstError");
+        const firstTextErr = document.getElementById("firstTextError");
+        const lastErr = document.getElementById("lastError");
+        const lastTextErr = document.getElementById("lastTextError");
+        const emailErr = document.getElementById("emailError");
+        const emailTextErr = document.getElementById("emailTextError");
+        const passErr = document.getElementById("passError");
+        const passTextErr = document.getElementById("passTextError");
+        const firstNameInput = document.getElementById("first_name");
+        const lastNameInput = document.getElementById("last_name");
+        const emailInput = document.getElementById("email");
+        const passwordInput= document.getElementById("password");
+        const btn = document.getElementById("submit-btn")
+
+        //form data
+        const formData = {
+            first_name : "",
+            last_name : "",
+            email: "",
+            password: "" 
+        }
+        // handle error
+        const handleFormError = (data) => {
+            if(data.first_name === ""){
+                firstErr.style.display = "block"
+                firstTextErr.style.display ="block"
+            }else{
+                firstErr.style.display = "none"
+                firstTextErr.style.display ="none"
+                // firstNameInput.value = ""
+            }
+            if(data.last_name === ""){
+                lastErr.style.display = "block"
+                lastTextErr.style.display = "block"
+            }else{
+                lastErr.style.display = "none"
+                lastTextErr.style.display = "none"
+                // lastNameInput.value = ""
+            }
+            if(data.email === ""){
+                emailErr.style.display = "block"
+                emailTextErr.style.display = "block"
+            }else{
+                emailErr.style.display = "none"
+                emailTextErr.style.display = "none"
+                // emailInput.value = ""
+            }
+            if(data.password === ""){
+                passErr.style.display = "block"
+                passTextErr.style.display = "block"
+            }else{
+                passErr.style.display = "none"
+                passTextErr.style.display = "none"
+                // passwordInput.value = ""
+            }
+        }
+        
+
+        // handle submit
+        const checkInput = (data) => {
+            if(data.first_name !== ""){
+                firstNameInput.value = ""
+            }
+            if(data.last_name !== ""){
+                lastNameInput.value = ""
+            }
+            if(data.email !== ""){
+                emailInput.value = ""
+            }
+            if(data.password !== ""){
+                passwordInput.value = ""
+            }
+        }
+
+        //trigger form submit
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            formData.first_name = firstNameInput.value,
+            formData.email = emailInput.value
+            formData.last_name = lastNameInput.value
+            formData.password = passwordInput.value
+            handleFormError(formData);
+            checkInput(formData)
+        })
+    </script>
+</body>
+</html>
